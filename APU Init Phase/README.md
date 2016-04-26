@@ -1,4 +1,4 @@
- # The Goal
+# The Goal
 
 The game is played on a rectangular grid with a given size. Some cells contain power nodes. The rest of the cells are empty.
 
@@ -109,9 +109,9 @@ This will enable the soldiers to activate their weapons. Without a working piece
 0.
 ```
 
-```
-puts "0 0 1 0 0 1"
-puts "1 0 -1 -1 -1 -1"
+```ruby
+puts '0 0 1 0 0 1'
+puts '1 0 -1 -1 -1 -1'
 puts '0 1 -1 -1 -1 -1'
 ```
 
@@ -119,7 +119,7 @@ puts '0 1 -1 -1 -1 -1'
 0.0.0
 ```
 
-```
+```ruby
 puts '0 0 2 0 -1 -1'
 puts '2 0 4 0 -1 -1'
 puts '4 0 -1 -1 -1 -1'
@@ -132,7 +132,7 @@ puts '4 0 -1 -1 -1 -1'
 0
 ```
 
-```
+```ruby
 puts '0 0 -1 -1 0 1'
 puts '0 1 -1 -1 0 2'
 puts '0 2 -1 -1 0 3'
@@ -145,7 +145,7 @@ puts '0 3 -1 -1 0 4'
 0.0
 ```
 
-```
+```ruby
 puts '0 0 2 0 0 2'
 puts '2 0 -1 -1 2 2'
 puts '0 2 2 2 -1 -1'
@@ -158,7 +158,7 @@ puts '2 2 -1 -1 -1 -1'
 .0.
 ```
 
-```
+```ruby
 puts '0 0 1 0 -1 -1'
 puts '1 0 2 0 1 1'
 puts '2 0 -1 -1 -1 -1'
@@ -173,7 +173,7 @@ puts '1 2 -1 -1 -1 -1'
 ...0
 ```
 
-```
+```ruby
 puts '0 0 -1 -1 -1 -1'
 puts '1 1 -1 -1 -1 -1'
 puts '2 2 -1 -1 -1 -1'
@@ -188,7 +188,7 @@ puts '4 4 -1 -1 -1 -1'
 000.
 ```
 
-```
+```ruby
 puts '0 0 1 0 0 1'
 puts '1 0 3 0 1 2'
 puts '3 0 -1 -1 3 1'
@@ -212,7 +212,7 @@ puts '2 3 -1 -1 -1 -1'
 ....0..
 ```
 
-```
+```ruby
 puts '2 0 -1 -1 2 2'
 puts '2 2 4 2 2 4'
 puts '4 2 6 2 4 4'
