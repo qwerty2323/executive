@@ -1,27 +1,32 @@
 require 'spec_helper'
 require_relative '../answer.rb'
 
-describe Grid do
-  subject { Grid.new }
-  context '.fill' do
-    it 'fills out @nodes array with non-blank nodes' do
-      subject.fill
+describe Scan do
+  subject { Scan.new([["0", "0", "0"], ["0", ".", "0"], [".", "0", "."]]) }
+  context '.new' do
+    it 'creates an array of nodes' do
       # 00
       # 0.
-      expect(subject.nodes.size).to eq(3)
+      expect(subject.nodes.size).to eq(6)
     end
-    it 'cleans @nodes from nils'
   end
   context '.neighbours' do
-    it 'finds closest neighbour to the right'
-    it 'finds closest neighbour to the bottom'
+    it 'finds closest neighbour to the bottom' do
+      expect(subject.v_neighbour(0, 0).to_s).to eq('0 1')
+    end
+    it 'finds closest neighbour to the right' do
+      expect(subject.h_neighbour(0, 0).to_s).to eq('1 0')
+    end
+    it 'returns coordinates of both neighbours' do
+      expect(subject.neighbours(0, 0)).to eq('1 0 0 1')
+    end
   end
   context 'No neighbour found' do
-    it 'returns BLANK if no neighbour to the right'
-    it 'returns BLANK if no neighbour to the bottom'
+    it 'returns BLANK if no neighbour to the right' do
+      expect(subject.h_neighbour(3, 0).to_s).to eq('')
+    end
+    it 'returns BLANK if no neighbour to the bottom' do
+      expect(subject.v_neighbour(0, 2).to_s).to eq('')
+    end
   end
-end
-
-describe 'solution' do
-  it 'returns a strings with coordinates'
 end

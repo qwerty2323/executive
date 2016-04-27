@@ -2,21 +2,24 @@ require 'benchmark'
 
 STDOUT.sync = true
 #
-class Grid
-  BLANK = '-1 -1'.freeze
-  attr_accessor :width, :height, :lines, :nodes
+class Input
+  attr_accessor :width, :height, :lines
   def initialize
-    @lines = []
-    @nodes = []
+    @lines  = []
     @width  = gets.to_i
     @height = gets.to_i
     @height.times do
       @lines << gets.chomp.split('')
     end
   end
-
-  def fill
-    @lines.each_with_index do |line, lindex|
+end
+#
+class Scan
+  BLANK = '-1 -1'.freeze
+  attr_accessor :nodes
+  def initialize(lines)
+    @nodes = []
+    lines.each_with_index do |line, lindex|
       line.each_with_index do |item, iindex|
         @nodes << Node.new(iindex, lindex) if item == '0'
       end
@@ -53,12 +56,7 @@ Node = Struct.new(:x, :y) do
   end
 end
 
-Benchmark.bm do |x|
-  x.report('Solution') do
-    A = Grid.new
-    A.fill
-    A.nodes.each do |node|
-      puts "#{node} #{A.neighbours(node.x, node.y)}"
-    end
-  end
-end
+# A = Scan.new(Input.new.lines)
+# A.nodes.each do |node|
+#   puts "#{node} #{A.neighbours(node.x, node.y)}"
+# end
