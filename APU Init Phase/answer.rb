@@ -1,105 +1,64 @@
+require 'benchmark'
+
 STDOUT.sync = true
 #
 class Grid
-  attr_accessor :width, :height, :lines
+  BLANK = '-1 -1'.freeze
+  attr_accessor :width, :height, :lines, :nodes
   def initialize
     @lines = []
+    @nodes = []
     @width  = gets.to_i
     @height = gets.to_i
     @height.times do
       @lines << gets.chomp.split('')
     end
   end
-end
 
-@grid = Grid.new
-@grid.lines.each do |line|
-  line.each do |element|
-    
+  def fill
+    @lines.each_with_index do |line, lindex|
+      line.each_with_index do |item, iindex|
+        @nodes << Node.new(iindex, lindex) if item == '0'
+      end
+    end
+    @nodes.compact!
+  end
+
+  def neighbours(xcoor, ycoor)
+    hor = if h_neighbour(xcoor, ycoor).nil?
+            BLANK
+          else
+            h_neighbour(xcoor, ycoor).to_s
+          end
+    ver = if v_neighbour(xcoor, ycoor).nil?
+            BLANK
+          else
+            v_neighbour(xcoor, ycoor).to_s
+          end
+    "#{hor} #{ver}"
+  end
+
+  def v_neighbour(xcoor, ycoor)
+    @nodes.find { |node| node.x == xcoor && node.y > ycoor }
+  end
+
+  def h_neighbour(xcoor, ycoor)
+    @nodes.find { |node| node.x > xcoor && node.y == ycoor }
   end
 end
 
-# 00
-# 0.
-# puts "0 0 1 0 0 1"
-# puts "1 0 -1 -1 -1 -1"
-# puts '0 1 -1 -1 -1 -1'
+Node = Struct.new(:x, :y) do
+  def to_s
+    "#{x} #{y}"
+  end
+end
 
-# 0.0.0
-# puts '0 0 2 0 -1 -1'
-# puts '2 0 4 0 -1 -1'
-# puts '4 0 -1 -1 -1 -1'
-
-# 0
-# 0
-# 0
-# 0
-
-# puts '0 0 -1 -1 0 1'
-# puts '0 1 -1 -1 0 2'
-# puts '0 2 -1 -1 0 3'
-# puts '0 3 -1 -1 0 4'
-
-# 0.0
-# ...
-# 0.0
-
-# puts '0 0 2 0 0 2'
-# puts '2 0 -1 -1 2 2'
-# puts '0 2 2 2 -1 -1'
-# puts '2 2 -1 -1 -1 -1'
-
-# 000
-# .0.
-# .0.
-
-# puts '0 0 1 0 -1 -1'
-# puts '1 0 2 0 1 1'
-# puts '2 0 -1 -1 -1 -1'
-# puts '1 1 -1 -1 1 2'
-# puts '1 2 -1 -1 -1 -1'
-
-# 0...
-# .0..
-# ..0.
-# ...0
-
-# puts '0 0 -1 -1 -1 -1'
-# puts '1 1 -1 -1 -1 -1'
-# puts '2 2 -1 -1 -1 -1'
-# puts '3 3 -1 -1 -1 -1'
-# puts '4 4 -1 -1 -1 -1'
-
-# 00.0
-# 0.00
-# .0.0
-# 000.
-
-# puts '0 0 1 0 0 1'
-# puts '1 0 3 0 1 2'
-# puts '3 0 -1 -1 3 1'
-# puts '0 1 2 1 0 3'
-# puts '2 1 3 1 2 3'
-# puts '3 1 -1 -1 3 2'
-# puts '1 2 3 2 1 3'
-# puts '3 2 -1 -1 -1 -1'
-# puts '0 3 1 3 -1 -1'
-# puts '1 3 2 3 -1 -1'
-# puts '2 3 -1 -1 -1 -1'
-
-# ..0....
-# .......
-# ..0.0.0
-# .......
-# 0.0.0..
-# .......
-# ....0..
-
-# puts '2 0 -1 -1 2 2'
-# puts '2 2 4 2 2 4'
-# puts '4 2 6 2 4 4'
-# puts '6 2 -1 -1 -1 -1'
-# puts '0 4 2 4 -1 -1'
-# puts '2 4 4 4 -1 -1'
-# puts '4 4 -1 -1 4 6'
-# puts '4 6 -1 -1 -1 -1'
+Benchmark.bm do |x|
+  x.report('Solution') {
+    A = Grid.new
+    A.fill
+    A.nodes.each do |node|
+      puts "#{node} #{A.neighbours(node.x, node.y)}"
+    end
+  }
+end

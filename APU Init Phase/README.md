@@ -102,12 +102,16 @@ You are part of the team of programmers for the top abstraction layer of the R-C
 Your assignment is as follows: Create the initialization code for the R-Chip which must verify the connections in the APU's systems and output all the links between components.
 This will enable the soldiers to activate their weapons. Without a working piece of code, many soldiers will be lost without having been able to fire a single shot.
 
-### Hardcoded solutions
+## Hardcoded solutions
+
+### Example
 
 ```
 00
 0.
 ```
+
+Solution
 
 ```ruby
 puts '0 0 1 0 0 1'
@@ -115,9 +119,13 @@ puts '1 0 -1 -1 -1 -1'
 puts '0 1 -1 -1 -1 -1'
 ```
 
+### Horizontal
+
 ```
 0.0.0
 ```
+
+Solution
 
 ```ruby
 puts '0 0 2 0 -1 -1'
@@ -125,12 +133,16 @@ puts '2 0 4 0 -1 -1'
 puts '4 0 -1 -1 -1 -1'
 ```
 
+### Vertical
+
 ```
 0
 0
 0
 0
 ```
+
+Solution
 
 ```ruby
 puts '0 0 -1 -1 0 1'
@@ -139,11 +151,15 @@ puts '0 2 -1 -1 0 3'
 puts '0 3 -1 -1 0 4'
 ```
 
+### Square
+
 ```
 0.0
 ...
 0.0
 ```
+
+Solution
 
 ```ruby
 puts '0 0 2 0 0 2'
@@ -152,11 +168,15 @@ puts '0 2 2 2 -1 -1'
 puts '2 2 -1 -1 -1 -1'
 ```
 
+### T
+
 ```
 000
 .0.
 .0.
 ```
+
+Solution
 
 ```ruby
 puts '0 0 1 0 -1 -1'
@@ -166,12 +186,16 @@ puts '1 1 -1 -1 1 2'
 puts '1 2 -1 -1 -1 -1'
 ```
 
+### Diagonal
+
 ```
 0...
 .0..
 ..0.
 ...0
 ```
+
+Solution
 
 ```ruby
 puts '0 0 -1 -1 -1 -1'
@@ -181,12 +205,16 @@ puts '3 3 -1 -1 -1 -1'
 puts '4 4 -1 -1 -1 -1'
 ```
 
+### Complex
+
 ```
 00.0
 0.00
 .0.0
 000.
 ```
+
+Solution
 
 ```ruby
 puts '0 0 1 0 0 1'
@@ -202,6 +230,7 @@ puts '1 3 2 3 -1 -1'
 puts '2 3 -1 -1 -1 -1'
 ```
 
+## Shuriken
 ```
 ..0....
 .......
@@ -211,6 +240,8 @@ puts '2 3 -1 -1 -1 -1'
 .......
 ....0..
 ```
+
+Solution
 
 ```ruby
 puts '2 0 -1 -1 2 2'
