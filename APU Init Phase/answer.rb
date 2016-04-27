@@ -54,11 +54,11 @@ Node = Struct.new(:x, :y) do
 end
 
 Benchmark.bm do |x|
-  x.report('Solution') {
+  x.report('Solution') do
     A = Grid.new
     A.fill
     A.nodes.each do |node|
       puts "#{node} #{A.neighbours(node.x, node.y)}"
     end
-  }
+  end
 end
